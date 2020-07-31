@@ -57,6 +57,9 @@ client.on("chat", (channel, user, message, self) => {
     case "!sloth":
       client.action("kurxx", `I am a DigitalSloth`);
       break;
+    case "!ident":
+      client.action("kurxx", `I am the Digital Sloth, here to serve`);
+     break;
     case "!gimmenum":
       var output = getRandInt(500, 550);
       client.action("kurxx", `Here is a num ${output}`);
