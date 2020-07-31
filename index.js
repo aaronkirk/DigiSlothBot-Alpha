@@ -44,28 +44,28 @@ client.on("chat", (channel, user, message, self) => {
   switch (message) {
     case "!twitter":
       client.action(
-        TARGETCHANNEL,
+        process.env.TARGETCHANNEL,
         `${user["display-name"]} you can find it at twitter.com/aaronkirk`
       );
       break;
     case "!github":
       client.action(
-        TARGETCHANNEL,
+        process.env.TARGETCHANNEL,
         `${user["display-name"]} you can find it at github.com/aaronkirk`
       );
       break;
     case "!sloth":
-      client.action(TARGETCHANNEL, `I am a DigitalSloth`);
+      client.action(process.env.TARGETCHANNEL, `I am a DigitalSloth`);
       break;
     case "!ident":
-      client.action(TARGETCHANNEL, `I am the Digital Sloth, here to serve`);
+      client.action(process.env.TARGETCHANNEL, `I am the Digital Sloth, here to serve`);
      break;
     case "!gimmenum":
       var output = getRandInt(500, 550);
-      client.action(TARGETCHANNEL, `Here is a num ${output}`);
+      client.action(process.env.TARGETCHANNEL, `Here is a num ${output}`);
       break;
     case "!listcar":
-      client.action(TARGETCHANNEL, `The current list of cars is ${carArray.toString()}`);
+      client.action(process.env.TARGETCHANNEL, `The current list of cars is ${carArray.toString()}`);
       break;
     default:
       break;
