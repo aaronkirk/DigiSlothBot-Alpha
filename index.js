@@ -25,7 +25,7 @@ let options = {
     username: process.env.USERNAME,
     password: process.env.PASSWORD
   },
-  channels: ["kurxx"]
+  channels: [ process.env.TARGETCHANNEL ]
 };
 
 // Set up our new TMI client and connect to the server.
@@ -44,28 +44,28 @@ client.on("chat", (channel, user, message, self) => {
   switch (message) {
     case "!twitter":
       client.action(
-        "kurxx",
+        TARGETCHANNEL,
         `${user["display-name"]} you can find it at twitter.com/aaronkirk`
       );
       break;
     case "!github":
       client.action(
-        "kurxx",
+        TARGETCHANNEL,
         `${user["display-name"]} you can find it at github.com/aaronkirk`
       );
       break;
     case "!sloth":
-      client.action("kurxx", `I am a DigitalSloth`);
+      client.action(TARGETCHANNEL, `I am a DigitalSloth`);
       break;
     case "!ident":
-      client.action("kurxx", `I am the Digital Sloth, here to serve`);
+      client.action(TARGETCHANNEL, `I am the Digital Sloth, here to serve`);
      break;
     case "!gimmenum":
       var output = getRandInt(500, 550);
-      client.action("kurxx", `Here is a num ${output}`);
+      client.action(TARGETCHANNEL, `Here is a num ${output}`);
       break;
     case "!listcar":
-      client.action("kurxx", `The current list of cars is ${carArray.toString()}`);
+      client.action(TARGETCHANNEL, `The current list of cars is ${carArray.toString()}`);
       break;
     default:
       break;
