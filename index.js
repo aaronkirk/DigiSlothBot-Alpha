@@ -67,15 +67,19 @@ client.on("chat", (channel, user, message, self) => {
     case "!listcar":
       client.action(process.env.TARGETCHANNEL, `The current list of cars is ${carArray.toString()}`);
       break;
+    case "!log":
+      client.action(process.env.TARGETCHANNEL, `Log Command Posted on Twitch`);
+      console.log(`###################### - Log Command Posted in Console`);
+      break;
     default:
       break;
   }
 });
 
 client.on("chat", (channel, user, message, self) => {
-    if(message === "!a"){
-        client.action(process.env.TARGETCHANNEL, `Great Sucess`);
-    }
+  if(message === "!a"){
+      client.action(process.env.TARGETCHANNEL, `Great Sucess`);
+  }
 });
 
 function getRandInt(min, max) {
