@@ -72,6 +72,12 @@ client.on("chat", (channel, user, message, self) => {
   }
 });
 
+client.on("chat", (channel, user, message, self) => {
+  if(message === "!a"){
+      client.action(process.env.TARGETCHANNEL, `Great Sucess`);
+  }
+});
+
 function getRandInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
