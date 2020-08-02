@@ -14,14 +14,12 @@ let listener = app.listen(process.env.PORT, function() {
 
 
 // Set up files to link up ? with the .env file
-const TARGETCHANNEL = process.env.TARGETCHANNEL;
+//const TARGETCHANNEL = process.env.KBTwitch;
+//const TARGETCHANNEL = process.env.EZATwitch;
+const TARGETCHANNEL = process.env.TESTTargetChannel;
 const USERNAME = process.env.USERNAME;
 const PASSWORD = process.env.PASSWORD;
 
-// Use these values when working locally 
-// const TARGETCHANNEL = process.env.TESTTargetChannel;
-// const USERNAME = process.env.TESTUsername;
-// const PASSWORD = process.env.TESTPassword;
 
 // Setting options for our bot, disable debug output once your up and running.
 let options = {
@@ -54,16 +52,10 @@ client.on("connected", (address, port) => {
 client.on("chat", (channel, user, message, self) => {
   switch (message.toLowerCase()) {
     case "!twitter":
-      client.action(
-        TARGETCHANNEL,
-        `${user["display-name"]} you can find it at twitter.com/aaronkirk`
-      );
+      client.action(TARGETCHANNEL, `${user["display-name"]} you can find my creator at twitter.com/aaronkirk`);
       break;
     case "!github":
-      client.action(
-        TARGETCHANNEL,
-        `${user["display-name"]} you can find it at github.com/aaronkirk`
-      );
+      client.action(TARGETCHANNEL, `${user["display-name"]} you can find my creator at github.com/aaronkirk`);
       break;
     case "!sloth":
       client.action(TARGETCHANNEL, `I am a DigitalSloth`);
@@ -81,6 +73,8 @@ client.on("chat", (channel, user, message, self) => {
     case "!log":
       client.action(TARGETCHANNEL, `Log Command Posted on Twitch`);
       console.log(`###################### - Log Command Posted in Console`);
+    case "!emote":
+        client.action(TARGETCHANNEL, `kylebo1Digi`);
       break;
     default:
       break;
@@ -107,7 +101,15 @@ function addCar(car) {
   return carArray.toString();
 }
 
+client.on("chat", (channel, user, message, self) => {
+  if(message.toLowerCase() === "!tag"){
+   console.log(channel, user, message, self)
+  }
+});
 
+client.on("chat", (channel, user, message, self) => {
+   console.log(user)  
+});
 
 client.on("chat", (channel, user, message, self) => {
   if(message.toLowerCase() === "!poke"){
@@ -116,7 +118,6 @@ client.on("chat", (channel, user, message, self) => {
       client.action(TARGETCHANNEL, digiSlothReply);
   }
 });
-
 
 function pokeSloth(){
   var digiSlothReply = "????";
@@ -139,4 +140,31 @@ function rollDice(){
   const diceRoll = Math.floor(Math.random() * 5) + 1;
   console.log(`The dice has been rolled and returned the number: ${diceRoll}`);
   return diceRoll;
+}
+
+
+client.on("chat", (channel, user, message, self) => {
+  if(message.toLowerCase() === "!explain"){
+/*       client.action(TARGETCHANNEL, `Before elevatePrivilege() .... user.username: ${user.username} .... user.mod: ${user.mod}`); */
+      elevatePrivilege(user);
+      const diceRoll = rollDice()
+      console.log(`"!explain" command recieved -- "${message.toUpperCase()}"`)
+/*      client.action(TARGETCHANNEL, `channel: ${channel} .... user: ${user} .... message: ${message} .... dice: ${diceRoll}`);
+      client.action(TARGETCHANNEL, `After elevatePrivilege() .... user.username: ${user.username} .... user.mod: ${user.mod}`); */
+      // .... user.identity: ${user.identity} .... user.id: ${user.id}
+  }
+});
+
+
+function elevatePrivilege(user){
+  
+  console.log('got to elevatePrivilege function')
+  console.log(user.username.toLowerCase())
+  if (user.username.toLowerCase() === 'kurxx'){
+    user.mod = true;
+    console.log('user is kurxx')
+  }
+  console.log(`user.mod: ${user.mod}`)
+  //user.mod = true;
+  return user;
 }
