@@ -51,12 +51,12 @@ client.on("connected", (address, port) => {
 //
 client.on("chat", (channel, user, message, self) => {
   switch (message.toLowerCase()) {
-    case "!twitter":
-      client.action(TARGETCHANNEL, `${user["display-name"]} you can find my creator at twitter.com/aaronkirk`);
-      break;
-    case "!github":
-      client.action(TARGETCHANNEL, `${user["display-name"]} you can find my creator at github.com/aaronkirk`);
-      break;
+    // case "!twitter":
+    //   client.action(TARGETCHANNEL, `${user["display-name"]} you can find my creator at twitter.com/aaronkirk`);
+    //   break;
+    // case "!github":
+    //   client.action(TARGETCHANNEL, `${user["display-name"]} you can find my creator at github.com/aaronkirk`);
+    //   break;
     case "!sloth":
       client.action(TARGETCHANNEL, `I am a DigitalSloth`);
       break;
